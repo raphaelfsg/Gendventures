@@ -27,11 +27,7 @@ public class Equips {
     }
 
     public static Equips[] getSwordWarrior() {
-        Equips[] swordWarrior = new Equips[3];
-        swordWarrior[0] = new Equips(10, 0);
-        swordWarrior[1] = new Equips(25, 0);
-        swordWarrior[2] = new Equips(50, 0);
-        return swordWarrior;
+        return new Equips[0];
     }
 
     public static Equips[] getStaffMage() {

@@ -1,8 +1,5 @@
 package game.model;
 
-public class Fight {
-
-
-
+public abstract class Fight {
 
 }

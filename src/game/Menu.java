@@ -1,19 +1,49 @@
 package game;
 
-// Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
-// then press Enter. You can now see whitespace characters in your code.
+import game.model.EnemyWarrior;
+import game.model.Equips;
+import game.model.Warrior;
+
+import java.util.Random;
+import java.util.Scanner;
+
 public class Menu {
     public static void main(String[] args) {
-        // Press Alt+Enter with your caret at the highlighted text to see how
-        // IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
+        Scanner sc = new Scanner(System.in);
 
-        // Press Shift+F10 or click the green arrow button in the gutter to run the code.
-        for (int i = 1; i <= 5; i++) {
+        Equips[] sword = Warrior.getSwordWarrior();
+        //sortear uma das trÊs armas
+        int index = new Random().nextInt(sword.length);
+        int swordWarrior = sword[index].getEquipDamage();
 
-            // Press Shift+F9 to start debugging your code. We have set one breakpoint
-            // for you, but you can always add more by pressing Ctrl+F8.
-            System.out.println("i = " + i);
-        }
+        Warrior warrior = new Warrior(50, 25, 10, 200, swordWarrior, 50);
+
+        int totalDamage = warrior.getTotalDamage();
+
+        System.out.println("Total damage: " + totalDamage);
+
+
+        EnemyWarrior enemyWarrior = new EnemyWarrior(50, 25, 10, 200, 15, 50);
+
+//        System.out.println("Força");
+//        enemyWarrior.setStrength(sc.nextInt());
+//        System.out.println("velocidade");
+//        enemyWarrior.setStrength(sc.nextInt());
+//        System.out.println("inteligencia");
+//        enemyWarrior.setIntelligence(sc.nextInt());
+//        System.out.println("vida");
+//        enemyWarrior.setLife(sc.nextInt());
+//        enemyWarrior.setWeaponDamage(swordWarrior);
+
+
+        int vidaDepoisDano = enemyWarrior.defense();
+
+        System.out.println("Vida depois do dano: " + vidaDepoisDano);
+
+        warrior.damageMsg();
+
+        enemyWarrior.defenseMsg();
+
+
     }
 }

@@ -1,20 +1,18 @@
 package game.model;
-import game.model.Equips;
+
 public abstract class Character {
 
-    private int strength;
-    private int speed;
-    private int intelligence;
-    private int life;
-    private int skill;
+    protected int strength;
+    protected int speed;
+    protected int intelligence;
+    protected int life;
 
-    public Character(int strength, int speed, int intelligence, int life, int skill) {
+    public Character(int strength, int speed, int intelligence, int life) {
 
         this.strength = strength;
         this.speed = speed;
         this.intelligence = intelligence;
         this.life = life;
-        this.skill = skill;
     }
 
     public int getStrength() {
@@ -49,3 +47,4 @@ public abstract class Character {
         this.life = life;
     }
 }
+
