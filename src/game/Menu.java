@@ -2,48 +2,50 @@ package game;
 
 import game.model.EnemyWarrior;
 import game.model.Equips;
+import game.model.MenuBackground;
 import game.model.Warrior;
+import game.repository.Imenu;
 
 import java.util.Random;
 import java.util.Scanner;
 
-public class Menu {
+public class Menu extends MenuBackground {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
+        int enterMenu;
+        int classChoice;
 
-        Equips[] sword = Warrior.getSwordWarrior();
-        //sortear uma das trÊs armas
-        int index = new Random().nextInt(sword.length);
-        int swordWarrior = sword[index].getEquipDamage();
+        while (true) {
+            enterMenu = startMenu();
 
-        Warrior warrior = new Warrior(50, 25, 10, 200, swordWarrior, 50);
-
-        int totalDamage = warrior.getTotalDamage();
-
-        System.out.println("Total damage: " + totalDamage);
-
-
-        EnemyWarrior enemyWarrior = new EnemyWarrior(50, 25, 10, 200, 15, 50);
-
-//        System.out.println("Força");
-//        enemyWarrior.setStrength(sc.nextInt());
-//        System.out.println("velocidade");
-//        enemyWarrior.setStrength(sc.nextInt());
-//        System.out.println("inteligencia");
-//        enemyWarrior.setIntelligence(sc.nextInt());
-//        System.out.println("vida");
-//        enemyWarrior.setLife(sc.nextInt());
-//        enemyWarrior.setWeaponDamage(swordWarrior);
-
-
-        int vidaDepoisDano = enemyWarrior.defense();
-
-        System.out.println("Vida depois do dano: " + vidaDepoisDano);
-
-        warrior.damageMsg();
-
-        enemyWarrior.defenseMsg();
-
-
+            switch (enterMenu) {
+                case 1:
+                    classChoice = classChoiceMsg();
+                    break;
+                case 2:
+                    System.out.println("show");
+                    break;
+                case 3:
+                    System.out.println("Vlw flw!");
+                    break;
+                case 4:
+                    System.exit(0);
+                    break;
+                default:
+                    System.out.println("Invalid option!");
+                    System.out.println("Choose betwen 1, 2, 3 or 4");
+            }
+            switch (classChoice) {
+                case 1:
+                    System.out.println("eaa");
+                    break;
+                case 2:
+                    System.out.println("aae");
+                    break;
+                default:
+                    System.out.println("eaeeeee");
+            }
+        }
+        System.out.println("Sua classe");
     }
 }
