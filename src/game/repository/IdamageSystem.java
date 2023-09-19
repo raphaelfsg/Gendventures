@@ -2,13 +2,15 @@ package game.repository;
 
 public interface IdamageSystem {
 
-    public int TotalDamage(int totalDamage);
+    public int TotalDamage();
 
-    public double TotalCritDamage(double totalCritDamage);
+    public int TotalCritDamage();
 
     public void damageMsg();
 
     public void critDamageMsg();
+
+    public int TotalDefense();
 
     public void defenseMsg();
 

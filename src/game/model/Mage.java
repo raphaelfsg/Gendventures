@@ -4,21 +4,26 @@ import game.repository.IdamageSystem;
 import game.repository.Iequips;
 import game.repository.Ifight;
 
+import static game.model.Equips.*;
+
 
 public class Mage extends Character implements Ifight, IdamageSystem, Iequips {
 
     private int weaponDamage;
     private int armorDefense;
 
-    public Mage(int strength, int speed, int intelligence, int life, int weaponDamage, int armorDefense) {
-        super(strength, speed, intelligence, life);
+    public Mage(String name, int strength, int speed, int intelligence, int life) {
+        super(name, strength, speed, intelligence, life);
         this.weaponDamage = weaponDamage;
         this.armorDefense = armorDefense;
     }
 
+    public Mage(){}
+
+
     @Override
     public int getWeaponDamage() {
-        return weaponDamage;
+        return setSwordWarrior();
     }
 
     public int setWeaponDamage(int weaponDamage) {
@@ -27,52 +32,47 @@ public class Mage extends Character implements Ifight, IdamageSystem, Iequips {
 
     @Override
     public int getArmorDefense() {
-        return armorDefense;
+        return setShieldWarrior();
     }
 
     public int setArmorDefense(int armorDefense) {
         return this.armorDefense = armorDefense;
     }
 
-    public static Equips[] getSwordWarrior() {
-        Equips[] swordWarrior = new Equips[3];
-        swordWarrior[0] = new Equips(10, 0);
-        swordWarrior[1] = new Equips(25, 0);
-        swordWarrior[2] = new Equips(50, 0);
-        return swordWarrior;
-    }
+
 
     // Cálculo de dano
     @Override
-    public int TotalDamage(int totalDamage) {
-        totalDamage = (((getIntelligence() + (getLife() / 10)) + ((getSpeed() * 2) + getStrength())) * (getArmorDefense() * 2) + (getWeaponDamage() * 2));
+    public int TotalDamage() {
+        int totalDamage = ((getIntelligence() + (getLife() / 10) + ((getSpeed() * 2) + getStrength())) + (getWeaponDamage() / 2));
 
         return totalDamage;
     }
 
     //método para obter o dano
     public int getTotalDamage(){
-        return TotalDamage(0);
+        return TotalDamage();
     }
 
     //sobrescrevendo o método criado na interface IdamageSystem e gerando o cálculo do dano crítico total
     @Override
-    public double TotalCritDamage(double totalCritDamage) {
-        totalCritDamage = ((((((getIntelligence() * 0.8) + (getLife() * 0.5) + (getSpeed() * 0.2) + (getStrength() * 0.25)) * 0.9) * getArmorDefense() * 2) + getWeaponDamage() * 2));
-
+    public int TotalCritDamage() {
+        int totalCritDamage = ((getIntelligence() + (getLife() / 10) + ((getSpeed() * 2) + getStrength())) + (getWeaponDamage() / 2));
         return totalCritDamage;
     }
 
     //método para obter o dano crítico
-    public double getTotalCritDamage() {
-        return TotalCritDamage(0);
+    public int getTotalCritDamage() {
+        return TotalCritDamage();
     }
 
-    //Sobrescrevendo o método void criado na interface IdamageSystem e imprimindo o dano total
     @Override
-    public void damageMsg() {
-        System.out.println("Você atacou e gerou " + getTotalDamage() + " de dano em seu inimigo!");
+    public int TotalDefense() {
+        int totalDefense = (getIntelligence() * 2) + ((getSpeed() * 2) + (getArmorDefense() * 2));
+
+        return totalDefense;
     }
+
 
     //Sobrescrevendo o método void criado na interface IdamageSystem e imprimindo o dano crítico total
     @Override
@@ -90,10 +90,17 @@ public class Mage extends Character implements Ifight, IdamageSystem, Iequips {
         }
     }
 
+    //Sobrescrevendo o método void criado na interface IdamageSystem e imprimindo o dano total
+    @Override
+    public void damageMsg() {
+        System.out.println("Você atacou e gerou " + getTotalDamage() + " de dano em seu inimigo!");
+    }
+
     @Override
     public void defenseMsg() {
-        System.out.println("Maguinho papelllll " + defense());
+        System.out.println("Malucooo que dano " + defense());
     }
+
     @Override
     public int defense() {
         double sorte = Math.random();
@@ -102,7 +109,5 @@ public class Mage extends Character implements Ifight, IdamageSystem, Iequips {
         } else {
             return life -= getTotalDamage() / 5;
         }
-
     }
-
 }

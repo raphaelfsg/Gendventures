@@ -2,7 +2,7 @@ package game.repository;
 
 public interface Iequips {
 
-   int getWeaponDamage();
+   public int getWeaponDamage();
 
-   int getArmorDefense();
+   public int getArmorDefense();
 }
